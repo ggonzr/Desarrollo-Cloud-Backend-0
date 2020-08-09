@@ -1,0 +1,1057 @@
+{
+	"info": {
+		"_postman_id": "f2090f49-bff3-4bfd-a1ba-9dde4b720f2e",
+		"name": "Tarea #0 - ISIS4426",
+		"description": "La empresa ABC desea desarrollar un prototipo funcional de una aplicación web que permitirá\nmanejar eventos. Un evento está compuesto de un nombre, una categoría (las cuatro posibles\ncategorías son: Conferencia, Seminario, Congreso o Curso), un lugar, una dirección, una fecha de\ninicio y una fecha de fin, y si el evento es presencial o virtual.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{usuario}}",
+							"description": "Login de la nueva cuenta usuario (debe ser único).",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "Nombre(s)",
+							"description": "Nombre(s) del usuario.",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Apellidos",
+							"description": "Apellidos del usuario.",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "mail_usuario@dominio.com",
+							"description": "Correo electrónico de la cuenta de usuario (debe ser único).",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{clave}}",
+							"description": "Contraseña de la nueva cuenta de usuario.",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "http://{{Servidor}}/api/create-user/",
+					"protocol": "http",
+					"host": [
+						"{{Servidor}}"
+					],
+					"path": [
+						"api",
+						"create-user",
+						""
+					]
+				},
+				"description": "Permite crear un nuevo usuario en el API de Eventos. Se requiere un nombre de usuario único en el sistema, una contraseña segura y un correo único asociado a la cuenta. \r\n\r\n**Path** '''/api/create-user/'''"
+			},
+			"response": [
+				{
+					"name": "Crear usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "login_nuevo_usuario",
+									"description": "Login de la nueva cuenta usuario (debe ser único).",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "Nombre(s)",
+									"description": "Nombre(s) del usuario.",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Apellidos",
+									"description": "Apellidos del usuario.",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "mail_usuario@dominio.com",
+									"description": "Correo electrónico de la cuenta de usuario (debe ser único).",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "strong_password",
+									"description": "Contraseña de la nueva cuenta de usuario.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://35.247.244.60/api/create-user/",
+							"protocol": "http",
+							"host": [
+								"35",
+								"247",
+								"244",
+								"60"
+							],
+							"path": [
+								"api",
+								"create-user",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Jul 2020 02:13:02 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "118"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": \"login_nuevo_usuario\",\n    \"first_name\": \"Nombre(s)\",\n    \"last_name\": \"Apellidos\",\n    \"email\": \"mail_usuario@dominio.com\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Solicitar el Token de un usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"type": "text",
+						"value": "user_login",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"type": "text",
+						"value": "p4ssW0rd_",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "{{usuario}}",
+							"description": "Nombre de usuario o login registrado en la aplicación.",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{clave}}",
+							"description": "Password del usuario.",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "http://{{Servidor}}/api/api-auth/",
+					"protocol": "http",
+					"host": [
+						"{{Servidor}}"
+					],
+					"path": [
+						"api",
+						"api-auth",
+						""
+					]
+				},
+				"description": "Permite obtener el token de autenticación a los servicios por parte de un usuario. Para obtener un token de autorización es necesario brindar un nombre de usuario y una  contraseña registrado en la plataforma. \r\n\r\n**Path** '''/api/api-auth/'''"
+			},
+			"response": [
+				{
+					"name": "Solicitar el Token de un usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "user_login",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "password",
+								"value": "p4ssW0rd_",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "username1",
+									"description": "Login de la aplicación",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password_username",
+									"description": "Password del usuario",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://35.247.244.60/api/api-auth/",
+							"protocol": "http",
+							"host": [
+								"35",
+								"247",
+								"244",
+								"60"
+							],
+							"path": [
+								"api",
+								"api-auth",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Jul 2020 01:15:03 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"e8d81cdd015a516d70fee8ef57ecb90eb53ff99d\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Recuperar la lista de eventos de un usuario",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+						"key": "Authorization",
+						"type": "text",
+						"value": "Token {{token}}"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{Servidor}}/api/events/",
+					"protocol": "http",
+					"host": [
+						"{{Servidor}}"
+					],
+					"path": [
+						"api",
+						"events",
+						""
+					]
+				},
+				"description": "Permite recuperar la lista de eventos creados por un usuario. El usuario debe proveer su token de autorización para identificarse en la plataforma. \r\n\r\n**Path** '''/api/eventos/'''"
+			},
+			"response": [
+				{
+					"name": "Recuperar la lista de eventos de un usuario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6ffea976f97a5c464f5b3643aafad58fe7e8ca4f",
+								"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{Servidor}}/api/events/",
+							"protocol": "http",
+							"host": [
+								"{{Servidor}}"
+							],
+							"path": [
+								"api",
+								"events",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Jul 2020 01:29:14 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1022"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"c6fe0704-67f4-4947-9b4f-d66bf02b9966\",\n        \"event_name\": \"Evento1\",\n        \"event_category\": \"CONFERENCE\",\n        \"event_place\": \"Conferencia Virtual por Zoom\",\n        \"event_address\": \"Conferencia Virtual por Zoom\",\n        \"event_initial_date\": \"2020-07-21T23:40:41Z\",\n        \"event_final_date\": \"2020-07-21T23:40:43Z\",\n        \"event_type\": \"VIRTUAL\",\n        \"thumbnail\": \"event_thumbnails/default.png\"\n    },\n    {\n        \"id\": \"6110567b-6c79-40f8-8d64-15ef6534344f\",\n        \"event_name\": \"Evento2\",\n        \"event_category\": \"CURSE\",\n        \"event_place\": \"Conferencia Virtual por Zoom\",\n        \"event_address\": \"Conferencia Virtual por Zoom\",\n        \"event_initial_date\": \"2020-07-21T23:41:07Z\",\n        \"event_final_date\": \"2020-07-21T23:41:09Z\",\n        \"event_type\": \"VIRTUAL\",\n        \"thumbnail\": \"event_thumbnails/default.png\"\n    },\n    {\n        \"id\": \"40123ffa-89f4-4f68-aeb5-03ae7a48b26a\",\n        \"event_name\": \"Evento3\",\n        \"event_category\": \"SEMINAR\",\n        \"event_place\": \"Conferencia Virtual por Zoom\",\n        \"event_address\": \"Conferencia Virtual por Zoom\",\n        \"event_initial_date\": \"2020-07-21T23:41:37Z\",\n        \"event_final_date\": \"2020-07-21T23:41:38Z\",\n        \"event_type\": \"VIRTUAL\",\n        \"thumbnail\": \"event_thumbnails/default.png\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Crear un nuevo evento",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "event_name",
+							"value": "Sesión Síncrona – Desarrollo de Soluciones Cloud ",
+							"description": "Nombre del evento ",
+							"type": "text"
+						},
+						{
+							"key": "event_category",
+							"value": "COURSE",
+							"description": "Categoría del Evento. Seleccione una categoría de la lista {CONFERENCE, SEMINAR, CONGRESS, COURSE}.\n",
+							"type": "text"
+						},
+						{
+							"key": "event_place",
+							"value": "Conferencia Virtual vía Sicua+",
+							"description": "Nombre del lugar donde se desarrolla el evento.",
+							"type": "text"
+						},
+						{
+							"key": "event_address",
+							"value": "https://sicuaplus.uniandes.edu.co/",
+							"description": "Dirección del lugar donde se desarrolló del evento.",
+							"type": "text"
+						},
+						{
+							"key": "event_initial_date",
+							"value": "2020-08-11T18:00:00Z",
+							"description": "Fecha y hora de inicio del evento.",
+							"type": "text"
+						},
+						{
+							"key": "event_final_date",
+							"value": "2020-08-14T20:30:00Z",
+							"description": "Fecha y hora de fin del evento.",
+							"type": "text"
+						},
+						{
+							"key": "event_type",
+							"value": "VIRTUAL",
+							"description": "Tipo del Evento. Seleccione un tipo de la lista {VIRTUAL, PRESENCIAL}",
+							"type": "text"
+						},
+						{
+							"key": "thumbnail",
+							"description": "Banner del evento, seleccione un archivo PNG o JPG",
+							"type": "file",
+							"src": "/C:/Users/Geovanny/Desktop/banner.jpg"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "http://{{Servidor}}/api/events/",
+					"protocol": "http",
+					"host": [
+						"{{Servidor}}"
+					],
+					"path": [
+						"api",
+						"events",
+						""
+					]
+				},
+				"description": "Permite crear un nuevo evento en la plataforma. Debe suministrar la información asociada al mismo. El usuario debe proveer su token de autorización para identificarse en la plataforma.\r\n\r\n**Path** '''/api/eventos/'''"
+			},
+			"response": [
+				{
+					"name": "Crear un nuevo evento",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6ffea976f97a5c464f5b3643aafad58fe7e8ca4f",
+								"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "event_name",
+									"value": "Sesión Síncrona – Desarrollo de Soluciones Cloud ",
+									"description": "Nombre del evento ",
+									"type": "text"
+								},
+								{
+									"key": "event_category",
+									"value": "CURSE",
+									"description": "Categoría del Evento. Seleccione una categoría de la lista {CONFERENCE, SEMINAR, CONGRESS, COURSE}.\n",
+									"type": "text"
+								},
+								{
+									"key": "event_place",
+									"value": "Conferencia Virtual vía Sicua+",
+									"description": "Nombre del lugar donde se desarrolla el evento.",
+									"type": "text"
+								},
+								{
+									"key": "event_address",
+									"value": "https://sicuaplus.uniandes.edu.co/",
+									"description": "Dirección del lugar donde se desarrolló del evento.",
+									"type": "text"
+								},
+								{
+									"key": "event_initial_date",
+									"value": "2020-08-14T18:00:00Z",
+									"description": "Fecha y hora de inicio del evento.",
+									"type": "text"
+								},
+								{
+									"key": "event_final_date",
+									"value": "2020-08-14T20:30:00Z",
+									"description": "Fecha y hora de fin del evento.",
+									"type": "text"
+								},
+								{
+									"key": "event_type",
+									"value": "VIRTUAL",
+									"description": "Tipo del Evento. Seleccione un tipo de la lista {VIRTUAL, PRESENCIAL}",
+									"type": "text"
+								},
+								{
+									"key": "thumbnail",
+									"description": "Banner del evento, seleccione un archivo PNG o JPG",
+									"type": "file",
+									"src": "/C:/Users/Profesor/Desktop/imagenes/banner-cloud.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{Servidor}}/api/events/",
+							"protocol": "http",
+							"host": [
+								"{{Servidor}}"
+							],
+							"path": [
+								"api",
+								"events",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Aug 2020 16:16:12 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "420"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"8f5f290f-1f72-4161-b4db-e6cf5b08169a\",\n    \"event_name\": \"Sesión Síncrona – Desarrollo de Soluciones Cloud\",\n    \"event_category\": \"COURSE\",\n    \"event_place\": \"Conferencia Virtual vía Sicua+\",\n    \"event_address\": \"https://sicuaplus.uniandes.edu.co/\",\n    \"event_initial_date\": \"2020-08-14T18:00:00Z\",\n    \"event_final_date\": \"2020-08-14T20:30:00Z\",\n    \"event_type\": \"VIRTUAL\",\n    \"thumbnail\": \"event_thumbnails/8f5f290f-1f72-4161-b4db-e6cf5b08169a.jpg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Visualizar la información de un Evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+						"key": "Authorization",
+						"type": "text",
+						"value": "Token {{token}}"
+					}
+				],
+				"url": {
+					"raw": "http://{{Servidor}}/api/events/c241d250-8936-41db-bf17-1e450d999bbc",
+					"protocol": "http",
+					"host": [
+						"{{Servidor}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"c241d250-8936-41db-bf17-1e450d999bbc"
+					]
+				},
+				"description": "Permite recuperar la información detallada de un evento. El usuario debe proveer su token de autorización para identificarse en la plataforma, y especificar en la URL el ID del evento de interés. \n\n**Path** '''/api/eventos/<str:event_id>/'''"
+			},
+			"response": [
+				{
+					"name": "Visualizar la información de un Evento",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6ffea976f97a5c464f5b3643aafad58fe7e8ca4f",
+								"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{Servidor}}/api/events/c6fe0704-67f4-4947-9b4f-d66bf02b9966",
+							"protocol": "http",
+							"host": [
+								"{{Servidor}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"c6fe0704-67f4-4947-9b4f-d66bf02b9966"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Jul 2020 02:27:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "342"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"c6fe0704-67f4-4947-9b4f-d66bf02b9966\",\n    \"event_name\": \"Evento1\",\n    \"event_category\": \"CONFERENCE\",\n    \"event_place\": \"Conferencia Virtual por Zoom\",\n    \"event_address\": \"Conferencia Virtual por Zoom\",\n    \"event_initial_date\": \"2020-07-21T23:40:41Z\",\n    \"event_final_date\": \"2020-07-21T23:40:43Z\",\n    \"event_type\": \"VIRTUAL\",\n    \"thumbnail\": \"event_thumbnails/default.png\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar la información de un evento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "event_name",
+							"value": "Querunea",
+							"description": "Nombre del evento ",
+							"type": "text"
+						},
+						{
+							"key": "event_category",
+							"value": "CONFERENCE",
+							"description": "Categoría del Evento. Seleccione una categoría de la lista {CONFERENCE, SEMINAR, CONGRESS, COURSE}.",
+							"type": "text"
+						},
+						{
+							"key": "event_place",
+							"value": "Conferencia Virtual vía Sicua+",
+							"description": "Nombre del lugar donde se desarrolla el evento.",
+							"type": "text"
+						},
+						{
+							"key": "event_address",
+							"value": "https://sicuaplus.uniandes.edu.co/",
+							"description": "Dirección del lugar donde se desarrolló del evento.",
+							"type": "text"
+						},
+						{
+							"key": "event_initial_date",
+							"value": "2020-08-14T18:00:00Z",
+							"description": "Fecha y hora de inicio del evento.",
+							"type": "text"
+						},
+						{
+							"key": "event_final_date",
+							"value": "2020-08-14T20:30:00Z",
+							"description": "Fecha y hora de fin del evento.",
+							"type": "text"
+						},
+						{
+							"key": "event_type",
+							"value": "VIRTUAL",
+							"description": "Tipo del Evento. Seleccione un tipo de la lista {VIRTUAL, PRESENCIAL}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "http://{{Servidor}}/api/events/c241d250-8936-41db-bf17-1e450d999bbc",
+					"protocol": "http",
+					"host": [
+						"{{Servidor}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"c241d250-8936-41db-bf17-1e450d999bbc"
+					]
+				},
+				"description": "Permite actualizar la información de un evento. El usuario debe proveer su token de autorización para identificarse en la plataforma, y especificar en la URL el ID del evento de interés.\n\n**Path** '''/api/eventos/str:event_id/'''"
+			},
+			"response": [
+				{
+					"name": "Actualizar la información de un evento",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6ffea976f97a5c464f5b3643aafad58fe7e8ca4f",
+								"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "event_name",
+									"value": "Sesión Síncrona – Desarrollo de Soluciones Cloud",
+									"description": "Nombre del evento ",
+									"type": "text"
+								},
+								{
+									"key": "event_category",
+									"value": "CONFERENCE",
+									"description": "Categoría del Evento. Seleccione una categoría de la lista {CONFERENCE, SEMINAR, CONGRESS, COURSE}.",
+									"type": "text"
+								},
+								{
+									"key": "event_place",
+									"value": "Conferencia Virtual vía Sicua+",
+									"description": "Nombre del lugar donde se desarrolla el evento.",
+									"type": "text"
+								},
+								{
+									"key": "event_address",
+									"value": "https://sicuaplus.uniandes.edu.co/",
+									"description": "Dirección del lugar donde se desarrolló del evento.",
+									"type": "text"
+								},
+								{
+									"key": "event_initial_date",
+									"value": "2020-08-14T18:00:00Z",
+									"description": "Fecha y hora de inicio del evento.",
+									"type": "text"
+								},
+								{
+									"key": "event_final_date",
+									"value": "2020-08-14T20:30:00Z",
+									"description": "Fecha y hora de fin del evento.",
+									"type": "text"
+								},
+								{
+									"key": "event_type",
+									"value": "VIRTUAL",
+									"description": "Tipo del Evento. Seleccione un tipo de la lista {VIRTUAL, PRESENCIAL}",
+									"type": "text"
+								},
+								{
+									"key": "thumbnail",
+									"value": "event_thumbnails/8f5f290f-1f72-4161-b4db-e6cf5b08169a.jpg",
+									"description": "Banner del evento, seleccione un archivo PNG o JPG",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{Servidor}}/api/events/bd800a4d-d733-4c80-acf4-8c17892d406d/",
+							"protocol": "http",
+							"host": [
+								"{{Servidor}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"bd800a4d-d733-4c80-acf4-8c17892d406d",
+								""
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Aug 2020 16:43:15 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "425"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"bd800a4d-d733-4c80-acf4-8c17892d406d\",\n    \"event_name\": \"Sesión Síncrona – Desarrollo de Soluciones Cloud\",\n    \"event_category\": \"CONFERENCE\",\n    \"event_place\": \"Conferencia Virtual vía Sicua+\",\n    \"event_address\": \"https://sicuaplus.uniandes.edu.co/\",\n    \"event_initial_date\": \"2020-08-14T18:00:00Z\",\n    \"event_final_date\": \"2020-08-14T20:30:00Z\",\n    \"event_type\": \"VIRTUAL\",\n    \"thumbnail\": \"event_thumbnails/bd800a4d-d733-4c80-acf4-8c17892d406d.jpg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un evento",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{Servidor}}/api/events/c241d250-8936-41db-bf17-1e450d999bbc",
+					"protocol": "http",
+					"host": [
+						"{{Servidor}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"c241d250-8936-41db-bf17-1e450d999bbc"
+					]
+				},
+				"description": "Permite eliminar un evento. El usuario debe proveer su token de autorización para identificarse en la plataforma, y especificar en la URL el ID del evento de interés.\n\n**Path** '''/api/eventos/str:event_id/'''"
+			},
+			"response": [
+				{
+					"name": "Eliminar un evento",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 6ffea976f97a5c464f5b3643aafad58fe7e8ca4f",
+								"description": "Token de autorización, se requiere como mecanismo de seguridad para el acceso a este endpoint.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{Servidor}}/api/events/ded8199b-1988-4cfb-b412-aaf5f633a181",
+							"protocol": "http",
+							"host": [
+								"{{Servidor}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"ded8199b-1988-4cfb-b412-aaf5f633a181"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Aug 2020 16:58:10 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "301"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"ded8199b-1988-4cfb-b412-aaf5f633a181\",\n    \"event_name\": \"Evento 3\",\n    \"event_category\": \"CONFERENCE\",\n    \"event_place\": \"asdada\",\n    \"event_address\": \"adsadads\",\n    \"event_initial_date\": \"2020-08-03T16:55:04Z\",\n    \"event_final_date\": \"2020-08-03T16:55:05Z\",\n    \"event_type\": \"VIRTUAL\",\n    \"thumbnail\": \"event_thumbnails/default.png\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los usuarios",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{Servidor}}/api/get-users/",
+					"protocol": "http",
+					"host": [
+						"{{Servidor}}"
+					],
+					"path": [
+						"api",
+						"get-users",
+						""
+					]
+				},
+				"description": "Prueba de la mirada de todos los usuarios"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
