@@ -14,8 +14,7 @@ import datetime
 @api_view(['POST'])
 @parser_classes([MultiPartParser])
 @csrf_exempt
-def create_user(request):            
-    print(request.data)
+def create_user(request):                
     serializer = UsuarioSerializer(data=request.data)
     if serializer.is_valid(): #Valida que los datos dados por el request sean validos
         serializer.save() #Guarda el objeto dado
@@ -33,7 +32,7 @@ def api_auth(request):
     
     payload = {
         'username': request.data['username'],
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2, minutes=30)
     }    
     token = jwt.encode(payload, SECRET_KEY).decode('utf-8')
     return JsonResponse({'token': token}, status=200)
@@ -42,7 +41,7 @@ def api_auth(request):
 @api_view(['GET'])
 @csrf_exempt
 @authenticate()
-def get_users(request):
+def get_users(request, *args, **kwargs):
     usuarios = Usuario.objects.all()
     serializer = UsuarioSerializer(usuarios, many=True)
     return JsonResponse(serializer.data, safe=False)
