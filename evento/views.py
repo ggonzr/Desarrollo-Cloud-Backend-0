@@ -21,9 +21,11 @@ def event_list(request, *args, **kwargs):
 @csrf_exempt
 @authenticate()
 def create_event(request, *args, **kwargs):
-    #Buscar el objeto de usuario para anexarle el evento                    
-    request.data['usuario'] = kwargs['username']    
-    serializer = EventoSerializer(data=request.data)
+    #Buscar el objeto de usuario para anexarle el evento       
+    request_data = request.data.dict()
+    request_data['usuario'] = kwargs['username']    
+    print('Usuario', request_data['usuario'])                     
+    serializer = EventoSerializer(data=request_data)
     if serializer.is_valid(): #Valida que los datos dados por el request sean validos
         serializer.save() #Guarda el objeto dado
         return JsonResponse(serializer.data, status=201)
